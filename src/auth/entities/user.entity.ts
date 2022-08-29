@@ -3,9 +3,11 @@ import {
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Product } from 'src/products/entities';
 
 @Entity('users')
 export class User {
@@ -35,6 +37,11 @@ export class User {
     default: ['user'],
   })
   roles: string[];
+
+  @OneToMany(() => Product, (product) => product.user, {
+    cascade: true,
+  })
+  products?: Product[];
 
   @BeforeInsert()
   transformFields() {

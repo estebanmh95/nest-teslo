@@ -11,10 +11,18 @@ interface SeedProduct {
   gender: 'men' | 'women' | 'kid' | 'unisex';
 }
 
+interface SeedUser {
+  email: string;
+  fullName: string;
+  password: string;
+  roles: string[];
+}
+
 type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats';
 
 interface SeedData {
+  users: SeedUser[];
   products: SeedProduct[];
 }
 
@@ -696,6 +704,20 @@ export const initialData: SeedData = {
       tags: ['shirt'],
       title: 'Kids Corp Jacket',
       gender: 'kid',
+    },
+  ],
+  users: [
+    {
+      email: 'test1@google.com',
+      fullName: 'test one',
+      password: 'Alemania2020.',
+      roles: ['admin'],
+    },
+    {
+      email: 'test2@google.com',
+      fullName: 'test two',
+      password: 'Alemania2020.',
+      roles: ['admin'],
     },
   ],
 };
