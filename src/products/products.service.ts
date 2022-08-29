@@ -54,7 +54,9 @@ export class ProductsService {
 
     return products.map(({ images, ...rest }) => ({
       ...rest,
-      images: images.map((image) => image.url),
+      images: images.map(
+        (image) => `${process.env.HOST_API}/files/product/${image.url}`,
+      ),
     }));
   }
 
