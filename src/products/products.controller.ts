@@ -15,9 +15,25 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { PaginationDto } from 'src/common/dtos/pagination.dto';
 import { Auth, GetUser } from 'src/auth/decorators';
 import { User } from 'src/auth/entities/user.entity';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Product } from './entities/product.entity';
 
+@ApiTags('Products')
 @Controller('products')
 @Auth()
+@ApiResponse({
+  status: 201,
+  description: 'Product was created',
+  type: Product,
+})
+@ApiResponse({
+  status: 400,
+  description: 'Bad Request',
+})
+@ApiResponse({
+  status: 403,
+  description: 'Unauthorized',
+})
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
